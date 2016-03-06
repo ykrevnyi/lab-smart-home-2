@@ -68,8 +68,6 @@ class Condition {
     };
 
     this._expressionResolver
-      .load(this._expressions)
-      .exec(input)
       .on('match', expression => {
         log(`+ for ${JSON.stringify(expression)}`);
       })
@@ -79,7 +77,9 @@ class Condition {
       .on('all', (expression, result) => {
         log(`every ${result}`);
       })
-      .on('end', this._expressionResolver.removeAllListeners);
+      .on('end', this._expressionResolver.removeAllListeners)
+      .load(this._expressions)
+      .exec(input);
   }
 
   /**

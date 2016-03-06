@@ -3,6 +3,7 @@
 let _ = require('lodash');
 let EventEmitter = require('events').EventEmitter;
 
+// Chane on responsibility
 class ExpressionResolver extends EventEmitter {
 
   constructor(Logic) {
@@ -12,8 +13,12 @@ class ExpressionResolver extends EventEmitter {
     this._expressions = [];
   }
 
-  get expressions() { return this._expressions }
-
+  /**
+   * Loads expressions.
+   *
+   * @param  {Array} expressions Expressions
+   * @return {Object}            Self
+   */
   load(expressions) {
     this._expressions = expressions;
 

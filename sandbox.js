@@ -26,9 +26,10 @@ let motionSensor2 = app().make('Sensor', {
 
 motionSensor._stream = process.stdin;
 motionSensor2._stream.push('1');
+// motionSensor2._stream.push('1');
 
 // Controll things
-let rule = app().make('Condition', {
+let condition = app().make('Condition', {
   expressions: [{
     scenarios: [{
       name: 'auto_kitchen_light'
@@ -48,10 +49,10 @@ let rule = app().make('Condition', {
     ]
   }]
 });
-rule.addDevice(lamp);
-rule.addSensor(motionSensor);
-rule.addSensor(motionSensor2);
-rule.listen();
+condition.addDevice(lamp);
+condition.addSensor(motionSensor);
+condition.addSensor(motionSensor2);
+condition.listen();
 
 // process.stdin.pipe(transform);
 // process.stdin.pipe(motionSensor._stream)
