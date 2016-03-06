@@ -20,6 +20,7 @@ file.getFiles(basePath('app/models')).forEach(load);
 file.getFiles(basePath('app/http/controllers')).forEach(register);
 file.getFiles(basePath('app/entities')).forEach(register);
 file.getFiles(basePath('app/streams')).forEach(register);
+file.getFiles(basePath('app/commands')).forEach(register);
 file.getFiles(basePath('app/repositories')).forEach(register);
 file.getFiles(basePath('app/exceptions')).forEach(register);
 file.getFiles(basePath('app/services')).forEach(register);

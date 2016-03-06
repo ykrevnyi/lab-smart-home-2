@@ -70,6 +70,7 @@ class Condition {
     this._expressionResolver
       .on('match', expression => {
         log(`+ for ${JSON.stringify(expression)}`);
+        // Run scenario
       })
       .on('fail', expression => {
         log(`- for ${JSON.stringify(expression)}`);
