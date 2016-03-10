@@ -3,7 +3,7 @@
 let _ = require('lodash');
 let EventEmitter = require('events').EventEmitter;
 
-// Chane on responsibility
+// Chain of responsibility
 class ExpressionResolver extends EventEmitter {
 
   constructor(Logic) {

@@ -2,18 +2,20 @@
 
 let stream = require('stream');
 
-class OutputStream extends stream.Readable {
+class OutputStream extends stream.Writable {
   
   constructor() {
     super({objectMode: true});
 
-    this.counter = 0;
+    this._pin = 0;
   }
 
-  _write(data, enc, done) {
-    console.log(`Writing ${data} to the ${this.pin}`);
+  set pin(pin) { this._pin = pin }
 
-    this.write(data);
+  _write(data, enc, done) {
+    console.log(`Writing ${data} to the ${this._pin}`);
+
+    done();
   }
 
 }

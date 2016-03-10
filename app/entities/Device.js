@@ -14,10 +14,13 @@ class Device  {
     this._title = title;
   }
 
+  get id() { return this._id }
   get pin() { return this._pin }
 
   send(data) {
-    this._stream.send(data);
+    this._stream.pin = this._pin;
+    
+    this._stream.write(data);
   }
 
 }

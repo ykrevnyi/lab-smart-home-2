@@ -4,14 +4,14 @@ let Command = require(basePath('app/commands/Command'));
 
 class TurnOnDevice extends Command {
   
-  constructor(Device) {
+  constructor(device) {
     super();
 
-    this._device = Device;
+    this._device = device;
   }
 
   execute() {
-    log('executing command');
+    this._device.send('hello')
   }
 
   revert() {
@@ -23,3 +23,5 @@ class TurnOnDevice extends Command {
   }
 
 }
+
+module.exports = TurnOnDevice;

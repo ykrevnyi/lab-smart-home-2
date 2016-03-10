@@ -13,6 +13,7 @@ class Sensor  {
     this._title = title;
   }
 
+  get id() { return this._id }
   get pin() { return this._pin }
 
   listen(callback) {

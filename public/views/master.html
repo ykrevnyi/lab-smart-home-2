@@ -3,7 +3,14 @@
 <head>
   <title>Hello world</title>
   <link href="/favicon.ico" rel="icon" type="image/x-icon" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css">
+  <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/bower_components/jQuery-QueryBuilder/dist/css/query-builder.default.min.css">
+  
+  <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="/bower_components/jquery-extendext/jQuery.extendext.min.js"></script>
+  <script src="/bower_components/doT/doT.min.js"></script>
+  <script src="/bower_components/jQuery-QueryBuilder/dist/js/query-builder.min.js"></script>
 </head>
 <body>
 
@@ -13,6 +20,49 @@
       <a href="/config">See config</a>
     </div>
   </div>
+
+  <div id="builder"></div>
+
+  <script>
+    $('#builder').queryBuilder({
+      plugins: {
+        'bt-tooltip-errors': { delay: 100 },
+        'sortable': null
+      },
+      filters: [
+        { id: "AL", name: "Alabama" },
+        { id: "AK", name: "Alaska" },
+        { id: "AZ", name: "Arizona" },
+        { id: "AR", name: "Arkansas" },
+        { id: "CA", name: "California" }
+      ],
+      operators: [{
+        type: 'equal',
+        nb_inputs: 1,
+        apply_to: ['string']
+      }, {
+        type: 'not_equal',
+        nb_inputs: 1,
+        apply_to: ['string']
+      }, {
+        type: 'gt',
+        nb_inputs: 1,
+        apply_to: ['string']
+      }, {
+        type: 'gte',
+        nb_inputs: 1,
+        apply_to: ['string']
+      }, {
+        type: 'lt',
+        nb_inputs: 1,
+        apply_to: ['string']
+      }, {
+        type: 'lte',
+        nb_inputs: 1,
+        apply_to: ['string']
+      }]
+    });
+  </script>
 
 </body>
 </html>

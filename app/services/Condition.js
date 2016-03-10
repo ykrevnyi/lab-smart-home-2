@@ -69,18 +69,22 @@ class Condition {
 
     this._expressionResolver
       .on('match', expression => {
-        log(`+ for ${JSON.stringify(expression)}`);
-        // Run scenario
+        console.log(msg, `+ for ${JSON.stringify(expression)}`);
+        this._runScenarios(expression.scenarios);
       })
       .on('fail', expression => {
-        log(`- for ${JSON.stringify(expression)}`);
+        console.log(`- for ${JSON.stringify(expression)}`);
       })
       .on('all', (expression, result) => {
-        log(`every ${result}`);
+        console.log(`every ${result}`);
       })
       .on('end', this._expressionResolver.removeAllListeners)
       .load(this._expressions)
       .exec(input);
+  }
+
+  _runScenarios(scenarios) {
+    scenarios.forEach(scenario => scenario.run());
   }
 
   /**

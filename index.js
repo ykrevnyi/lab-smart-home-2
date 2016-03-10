@@ -10,4 +10,3 @@ kernel.init();
 if (process.env.SANDBOX) {
   require(basePath('sandbox'));
 }
-

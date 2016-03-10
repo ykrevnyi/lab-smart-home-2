@@ -23,30 +23,36 @@ let motionSensor2 = app().make('Sensor', {
   room: room._id,
   pin: '3'
 });
+let command = app().make('TurnOnDevice', {
+  device: lamp
+});
+let scenario = app().make('Scenario', {
+  expressions: [{
+    id: '123123',
+    title: 'Turn LED lamp on',
+    type: 'parallel',
+    commands: [command]
+  }]
+});
 
 motionSensor._stream = process.stdin;
 motionSensor2._stream.push('1');
-// motionSensor2._stream.push('1');
+
 
 // Controll things
 let condition = app().make('Condition', {
   expressions: [{
-    scenarios: [{
-      name: 'auto_kitchen_light'
-    }],
+    scenarios: [scenario],
     condition: 'AND',
-    rules: [
-      {
-        pin: '2',
-        operator: 'equal',
-        value: '1'
-      },
-      {
-        pin: '3',
-        operator: 'equal',
-        value: '1'
-      }
-    ]
+    rules: [{
+      pin: '2',
+      operator: 'equal',
+      value: '1'
+    }, {
+      pin: '3',
+      operator: 'equal',
+      value: '1'
+    }]
   }]
 });
 condition.addDevice(lamp);

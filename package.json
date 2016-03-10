@@ -13,6 +13,7 @@
     "body-parser": "^1.14.2",
     "escape-html": "^1.0.3",
     "express": "^4.13.3",
+    "gulp": "^3.9.1",
     "handlebars": "^4.0.5",
     "lodash": "^4.0.0",
     "lumenode-config": "latest",
@@ -30,6 +31,10 @@
   },
   "devDependencies": {
     "cucumber": "^0.9.4",
+    "gulp-clean": "^0.3.2",
+    "gulp-mocha": "^2.2.0",
+    "gulp-shell": "^0.5.2",
+    "nodemon": "^1.9.1",
     "should": "^8.2.1",
     "zombie": "^4.2.1"
   }
