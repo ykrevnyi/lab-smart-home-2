@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "angularjs": "0.0.1",
     "body-parser": "^1.14.2",
     "escape-html": "^1.0.3",
     "express": "^4.13.3",

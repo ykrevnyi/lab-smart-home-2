@@ -5,23 +5,132 @@
   <link href="/favicon.ico" rel="icon" type="image/x-icon" />
   <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="/bower_components/jQuery-QueryBuilder/dist/css/query-builder.default.min.css">
-  
+  <link rel="stylesheet" type="text/css" href="/bower_components/ng-dialog/css/ngDialog.min.css">
+  <link rel="stylesheet" type="text/css" href="/bower_components/ng-dialog/css/ngDialog-theme-default.min.css">
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+
   <script src="/bower_components/jquery/dist/jquery.min.js"></script>
   <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="/bower_components/jquery-extendext/jQuery.extendext.min.js"></script>
+  <script src="/bower_components/angular/angular.min.js"></script>
+  <script src="/bower_components/angular-drag-and-drop-lists/angular-drag-and-drop-lists.min.js"></script>
   <script src="/bower_components/doT/doT.min.js"></script>
   <script src="/bower_components/jQuery-QueryBuilder/dist/js/query-builder.min.js"></script>
+  <script src="/bower_components/ng-dialog/js/ngDialog.min.js"></script>
 </head>
-<body>
+<body ng-app="app">
 
-  <div class="Aligner">
-    <div class="Aligner-item">
-      <h1>Hi, there.</h1>
-      <a href="/config">See config</a>
+  <div class="SmartBoxes container" ng-controller="SmartController">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="row">
+          <h3 class="col-xs-12">Room</h3>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <ul dnd-list="room.items"
+              dnd-allowed-types="room.allowedTypes">
+
+              <li ng-repeat="item in room.items"
+                  dnd-draggable="item"
+                  dnd-type="item.type"
+                  dnd-disable-if="item.type == 'unknown'"
+                  dnd-moved="room.items.splice($index, 1)"
+                  dnd-effect-allowed="move"
+                  class="background-{[{item.type}]}"
+                  >
+                  <dnd-nodrag>
+                    <div dnd-handle class="handle">:::</div>
+                    <div class="name">
+                        <input type="text" ng-model="item.title" class="background-{[{item.type}]} form-control input-sm">
+                    </div>
+                  </dnd-nodrag>
+              </li>
+
+              <li class="dndPlaceholder">
+                  Drop any <strong>{[{room.allowedTypes.join(' or ')}]}</strong> here
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="Devices col-xs-6">
+        <div class="row">
+          <h3 class="col-xs-12">Devices <button ng-click="addDevice($event)">+</button></h3>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <ul dnd-list="devices.items"
+              dnd-allowed-types="devices.allowedTypes">
+
+              <li ng-repeat="device in devices.items"
+                  dnd-draggable="device"
+                  dnd-type="device.type"
+                  dnd-disable-if="device.type == 'unknown'"
+                  dnd-moved="devices.items.splice($index, 1)"
+                  dnd-effect-allowed="move"
+                  class="background-{[{device.type}]}"
+                  >
+                  <dnd-nodrag>
+                    <div dnd-handle class="handle">:::</div>
+                    <div class="name">
+                        <input type="text" ng-model="device.title" class="background-{[{device.type}]} form-control input-sm">
+                    </div>
+                  </dnd-nodrag>
+              </li>
+
+              <li class="dndPlaceholder">
+                  Drop any <strong>{[{devices.allowedTypes.join(' or ')}]}</strong> here
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div><!-- end .Devices -->
+      <div class="Sensors col-xs-6">
+        <div class="row">
+          <h3 class="col-xs-12">Sensors <button ng-click="addSensor($event)">+</button></h3>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <ul dnd-list="sensors.items"
+              dnd-allowed-types="sensors.allowedTypes">
+
+              <li ng-repeat="sensor in sensors.items"
+                  dnd-draggable="sensor"
+                  dnd-type="sensor.type"
+                  dnd-disable-if="sensor.type == 'unknown'"
+                  dnd-moved="sensors.items.splice($index, 1)"
+                  dnd-effect-allowed="move"
+                  class="background-{[{sensor.type}]}"
+                  >
+                  <dnd-nodrag>
+                    <div dnd-handle class="handle">:::</div>
+                    <div class="name">
+                        <input type="text" ng-model="sensor.title" class="background-{[{sensor.type}]} form-control input-sm">
+                    </div>
+                  </dnd-nodrag>
+              </li>
+
+              <li class="dndPlaceholder">
+                  Drop any <strong>{[{sensors.allowedTypes.join(' or ')}]}</strong> here
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div><!-- end .Sensors -->
     </div>
   </div>
 
-  <div id="builder"></div>
+  <div class="container">
+    <div class="row"><h1 class="col-sm-12">Hi there.</h1></div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div id="builder"></div>
+      </div>
+    </div>
+  </div>
 
   <script>
     $('#builder').queryBuilder({
@@ -63,6 +172,10 @@
       }]
     });
   </script>
+
+  <script src="/js/SmartController.js"></script>
+  <script src="/js/AddDeviceController.js"></script>
+  <script src="/js/AddSensorController.js"></script>
 
 </body>
 </html>

@@ -7,20 +7,107 @@
     display: none !important;
 }
 
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
+/**
+ * For the correct positioning of the placeholder element, the dnd-list and
+ * it's children must have position: relative
+ */
+.SmartBoxes ul[dnd-list],
+.SmartBoxes ul[dnd-list] > li {
+  position: relative;
 }
 
-.Aligner {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/**
+ * The dnd-list should always have a min-height,
+ * otherwise you can't drop to it once it's empty
+ */
+.SmartBoxes ul[dnd-list] {
+  min-height: 42px;
+  padding-left: 0px;
+  border: 1px solid #ccc;
+  border-radius: 2px;
 }
 
-.Aligner-item {
-  max-width: 50%;
-  text-align: center;
+/**
+ * The dndDraggingSource class will be applied to
+ * the source element of a drag operation. It makes
+ * sense to hide it to give the user the feeling
+ * that he's actually moving it.
+ */
+.SmartBoxes ul[dnd-list] .dndDraggingSource {
+  display: none;
+}
+
+/**
+ * An element with .dndPlaceholder class will be
+ * added to the dnd-list while the user is dragging
+ * over it.
+ */
+.SmartBoxes ul[dnd-list] .dndPlaceholder {
+  display: block;
+  background-color: #ddd;
+  padding: 10px 15px;
+  min-height: 42px;
+}
+
+/**
+ * The dnd-lists's child elements currently MUST have
+ * position: relative. Otherwise we can not determine
+ * whether the mouse pointer is in the upper or lower
+ * half of the element we are dragging over. In other
+ * browsers we can use event.offsetY for this.
+ */
+.SmartBoxes ul[dnd-list] li {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+  display: block;
+  margin-bottom: -1px;
+
+  /* Disable text selection if item is not draggable */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.SmartBoxes ul[dnd-list] li dnd-nodrag {
+  display: block;
+  padding: 10px 15px;
+}
+
+/**
+ * Gender-specifc background
+ */
+.SmartBoxes ul[dnd-list] li.background-device {
+  background-color: #CAE0FC;
+}
+
+.SmartBoxes ul[dnd-list] li.background-sensor {
+  background-color: #FFE2F5;
+}
+
+.SmartBoxes ul[dnd-list] input.background-device {
+  background-color: #D8E9FF;
+  color: #2F4D99;
+}
+
+.SmartBoxes ul[dnd-list] input.background-sensor {
+  background-color: #FFF0FA;
+  color: #D84FA7;
+}
+
+/**
+ * Handle positioning
+ */
+.SmartBoxes .handle {
+  cursor: move;
+  position: absolute;
+  top: 14px;
+}
+
+.SmartBoxes .name {
+  margin-left: 20px;
 }

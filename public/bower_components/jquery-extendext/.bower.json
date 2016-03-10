@@ -28,6 +28,5 @@
   },
   "_source": "git://github.com/mistic100/jQuery.extendext.git",
   "_target": "^0.1.1",
-  "_originalSource": "jquery-extendext",
-  "_direct": true
+  "_originalSource": "jquery-extendext"
 }
